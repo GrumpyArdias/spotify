@@ -54,5 +54,11 @@ export default nextAuth({
       console.log("TOKEN DE ACCESO CADUCADO");
       return await refreshAccessToken(token);
     },
+    async session({ session, token }) {
+      session.user.accessToken = token.accessToken;
+      session.user.refreshAccessToken = token.refreshAccessToken;
+      session.user.username = token.username;
+      return session;
+    },
   },
 });
